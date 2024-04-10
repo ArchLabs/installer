@@ -3349,13 +3349,9 @@ al_repo()
 
 		# [archlabs-testing]
 		# Server =  https://pub-7d84e047b852442a86fd6d7feb1ff2cd.r2.dev/\$repo/\$arch
-		# Server =  https://github.com/ArchLabs/\$repo/raw/master/\$arch
-		# Server =  https://bitbucket.org/archlabslinux/\$repo/raw/master/\$arch
 
 		[archlabs]
 		Server = https://pub-7d84e047b852442a86fd6d7feb1ff2cd.r2.dev/\$repo/\$arch
-		Server = https://bitbucket.org/archlabslinux/\$repo/raw/master/\$arch
-		Server = https://github.com/ArchLabs/\$repo/raw/master/\$arch
 		Server = https://sourceforge.net/projects/archlabs-repo/files/\$repo/\$arch
 
 		EOF
@@ -3758,7 +3754,7 @@ if [[ ! -f /tmp/new ]]; then
 	msg "Update" "\nChecking for installer updates.\n" 0
 	( reflector --list-countries 2>/dev/null | sed '1,2d' | awk 'NF{NF--}; {print}' > /tmp/mcountry ) &
 	echo $! > /tmp/mirrorpid
-	if curl -fsSL 'https://bitbucket.org/archlabslinux/installer/raw/master/installer' -o /tmp/new; then
+	if curl -fsSL 'https://github.com/ArchLabs/installer/raw/main/installer' -o /tmp/new; then
 		if (( $(vercmp "$(awk -F= '/^VER=/ {print $2}' /tmp/new)" "$VER") > 0 )); then
 			cp /tmp/new /usr/local/bin/installer
 			chmod +x /usr/local/bin/installer
