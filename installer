@@ -90,7 +90,7 @@ typeset -a WM_PKGS=(
 "polkit-gnome"
 "arandr"
 "dunst"
-# "exo"
+"exo"
 "feh"
 "nitrogen"
 "picom"
@@ -1719,7 +1719,7 @@ install_base()
 		unset BG_PID
 	fi
 
-	install_check_base
+	install_check_bg
 
 	mkdir -pv "$MNT/etc/default"
 
@@ -2707,7 +2707,8 @@ lvm_lv_size()
 			if (( ERR_SIZE != 1 )); then
 				case ${VOLUME_SIZE:$lv:1} in
 					[mMgG])
-						local s=${VOLUME_SIZE:0:$lv} m=$((s * 1000))
+						local s=${VOLUME_SIZE:0:$lv}
+						local m=$((s * 1000))
 						case ${VOLUME_SIZE:$lv:1} in
 							[Gg])
 								if (( m >= VGROUP_MB )); then
